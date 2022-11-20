@@ -6,6 +6,7 @@ import { stripe } from '../lib/stripe'
 import { HomeContainer, Product } from '../styles/pages/home'
 import 'keen-slider/keen-slider.min.css'
 import Stripe from 'stripe'
+import Head from 'next/head'
 
 type HomeProps = {
   products: {
@@ -26,12 +27,21 @@ export default function Home({ products }: HomeProps) {
 
   return (
     <>
+      <Head>
+        <title>Home | Ignite Shop</title>
+      </Head>
+
       <HomeContainer ref={sliderRef} className="keen-slider">
         {products.map(product => {
           return (
-            <Link href={`/product/${product.id}`} key={product.id}>
+            <Link
+              href={`/product/${product.id}`}
+              key={product.id}
+              prefetch={false}
+            >
               <Product className="keen-slider__slide">
                 <Image src={product.imageUrl} width={520} height={480} alt="" />
+
                 <footer>
                   <strong>{product.name}</strong>
                   <span>{product.price}</span>
@@ -45,14 +55,14 @@ export default function Home({ products }: HomeProps) {
   )
 }
 
-// Não tem acesso a informações em tempo real do DB, ou nada que venha do contexto da requisição. => Fazer uma página igual para todos os usuários
-
 export const getStaticProps: GetStaticProps = async () => {
   const response = await stripe.products.list({
     expand: ['data.default_price']
   })
+
   const products = response.data.map(product => {
     const price = product.default_price as Stripe.Price
+
     return {
       id: product.id,
       name: product.name,
@@ -63,6 +73,7 @@ export const getStaticProps: GetStaticProps = async () => {
       }).format(price.unit_amount / 100)
     }
   })
+
   return {
     props: {
       products
