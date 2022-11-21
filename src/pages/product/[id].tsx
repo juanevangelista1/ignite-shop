@@ -43,7 +43,9 @@ export default function Product({ product }: ProductProps) {
 
           <p>{product.description}</p>
 
-          <button onClick={() => addToCart(product)}></button>
+          <button onClick={() => addToCart(product)}>
+            Adicionar Produto ao carrinho
+          </button>
         </ProductDetails>
       </ProductContainer>
     </>

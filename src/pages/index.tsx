@@ -4,7 +4,7 @@ import Link from 'next/link'
 import useEmblaCarousel from 'embla-carousel-react'
 import { stripe } from '../lib/stripe'
 import { HomeContainer, Product, SliderContainer } from '../styles/pages/home'
-
+import { ProductSkeleton } from '../components/ProductSkeleton'
 import Stripe from 'stripe'
 import Head from 'next/head'
 import { CartButton } from '../components/CartButton'
@@ -54,9 +54,9 @@ export default function Home({ products }: HomeProps) {
             <SliderContainer className="embla__container container">
               {isLoading ? (
                 <>
-                  {/* <ProductSkeleton className="embla__slide" />
                   <ProductSkeleton className="embla__slide" />
-                  <ProductSkeleton className="embla__slide" /> */}
+                  <ProductSkeleton className="embla__slide" />
+                  <ProductSkeleton className="embla__slide" />
                 </>
               ) : (
                 <>
