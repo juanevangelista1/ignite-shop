@@ -11,6 +11,7 @@ import { CartButton } from '../components/CartButton'
 import { useEffect, useState } from 'react'
 import { IProduct } from '../context/CartContext'
 import { useCart } from '../hooks/useCart'
+import { MouseEvent } from 'react'
 
 interface HomeProps {
   products: IProduct[]
@@ -34,10 +35,10 @@ export default function Home({ products }: HomeProps) {
 
   const { addToCart } = useCart()
 
-  function handleAddToCart(
+  function handleAddToCart<HTMLButtonElement>(
     e: MouseEvent<HTMLButtonElement>,
     product: IProduct
-  ) {
+  ): void {
     e.preventDefault()
     addToCart(product)
   }
