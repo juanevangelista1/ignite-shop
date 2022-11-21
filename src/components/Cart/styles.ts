@@ -37,6 +37,7 @@ export const CartClose = styled(Dialog.Close, {
   position: "absolute",
   top: "1.75rem",
   right: "1.75rem",
+  cursor: "pointer",
 });
 
 export const CartProduct = styled("div", {
