@@ -1,7 +1,5 @@
-﻿import { useState } from 'react'
-import { GetStaticPaths, GetStaticProps } from 'next'
+﻿import { GetStaticPaths, GetStaticProps } from 'next'
 import { stripe } from '../../lib/stripe'
-import axios from 'axios'
 import Image from 'next/legacy/image'
 import Head from 'next/head'
 import Stripe from 'stripe'
@@ -53,7 +51,7 @@ export default function Product({ product }: ProductProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = [{ params: { id: 'prod_MO0C3yNu4UBp9p' } }]
+  const paths = [{ params: { id: 'prod_Mpcm1Akics1fID' } }]
 
   return {
     paths,
